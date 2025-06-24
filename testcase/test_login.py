@@ -1,7 +1,6 @@
 import time
 
 from pages.BasePage import BasePage
-from pages.HomePage import HomePage
 from pages.LoginPage import LoginPage
 from utilities.readproperties import read_configurations
 
