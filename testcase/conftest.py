@@ -2,25 +2,32 @@ import pytest
 from selenium import webdriver
 from utilities.readproperties import read_configurations
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 
 browser = read_configurations("Basic Info", "browser")
 
-
 @pytest.fixture()
 def driver_setup():
+
+    #Disable the Browser alert for the change password
+    prefs = {
+        "credentials_enable_service": False,
+        "profile.password_manager_enabled": False
+    }
     options = Options()
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--headless")  # If running in CI/CD
-    options.add_argument("--disable-gpu")
+    options.add_argument("--incognito")
+    options.add_argument("--disable-infobars")
+    options.add_argument("--disable-notifications")
+    options.add_experimental_option("prefs", prefs)
 
     if browser.lower() == "chrome":
-        driver = webdriver.Chrome()
+        driver = webdriver.Chrome(service=Service(), options=options)
     elif browser.lower() == "firefox":
-        driver = webdriver.Firefox()
+        driver = webdriver.Firefox(service=Service(), options=options)
     elif browser.lower() == "edge":
-        driver = webdriver.Edge()
+        driver = webdriver.Edge(service=Service(), options=options)
     else:
         return "Driver not Found"
+
     driver.maximize_window()
     return driver
