@@ -1,0 +1,57 @@
+from pages.CartPage import CartPage
+from pages.LoginPage import LoginPage
+from pages.HomePage import HomePage
+from pages.BasePage import BasePage
+from utilities.readproperties import read_configurations
+
+
+class TestCart:
+    base_url = read_configurations("Basic Info", "base_url")
+    username = read_configurations("Basic Info", "username")
+    password = read_configurations("Basic Info", "password")
+
+    def navigate_to_cart_page(self, driver_setup):
+        self.driver = driver_setup
+        self.driver.get(self.base_url)
+        self.driver.maximize_window()
+        login_page = LoginPage(self.driver)
+        login_page.login(self.username, self.password)
+        home_page = HomePage(self.driver)
+        home_page.add_product_to_cart()
+        base_page = BasePage(self.driver)
+        base_page.click_on_element(HomePage.cart_page_xpath)
+        base_page.verify_task("//span[text()='Your Cart']")
+        self.driver.close()
+
+    def verify_product_details_in_cart(self, driver_setup):
+        self.driver = driver_setup
+        self.driver.get(self.base_url)
+        self.driver.maximize_window()
+        login_page = LoginPage(self.driver)
+        login_page.login(self.username, self.password)
+        home_page = HomePage(self.driver)
+        home_page.add_product_to_cart()
+        base_page = BasePage(self.driver)
+        base_page.click_on_element(HomePage.cart_page_xpath)
+        cart_page = CartPage(self.driver)
+        product_name = base_page.get_element_text(cart_page.first_product_name_xpath)
+        # print("Product name in cart:", product_name)
+        assert product_name == "Sauce Labs Backpack"
+        self.driver.close()
+
+    def test_remove_product_from_cart(self, driver_setup):
+        self.driver = driver_setup
+        self.driver.get(self.base_url)
+        self.driver.maximize_window()
+        login_page = LoginPage(self.driver)
+        login_page.login(self.username, self.password)
+        home_page = HomePage(self.driver)
+        home_page.add_product_to_cart()
+        base_page = BasePage(self.driver)
+        base_page.click_on_element(HomePage.cart_page_xpath)
+        base_page.click_on_element(CartPage.remove_product_button_xpath)
+        self.driver.close()
+
+    
+
+

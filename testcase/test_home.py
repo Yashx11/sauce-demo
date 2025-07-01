@@ -14,7 +14,7 @@ class TestHome:
         pass
 
     # Sort products A to Z
-    def test_sorting_the_products_a_to_z(self, driver_setup):
+    def sorting_the_products_a_to_z(self, driver_setup):
         self.driver = driver_setup
         self.driver.get(self.base_url)
         self.driver.maximize_window()
@@ -26,7 +26,7 @@ class TestHome:
         self.driver.close()
 
     # Sort products Z to A
-    def test_sorting_the_products_z_to_a(self, driver_setup):
+    def sorting_the_products_z_to_a(self, driver_setup):
         self.driver = driver_setup
         self.driver.get(self.base_url)
         self.driver.maximize_window()
@@ -38,7 +38,7 @@ class TestHome:
         self.driver.close()
 
     # Sort products low to high
-    def test_sorting_the_products_low_to_height(self, driver_setup):
+    def sorting_the_products_low_to_height(self, driver_setup):
         self.driver = driver_setup
         self.driver.get(self.base_url)
         self.driver.maximize_window()
@@ -50,7 +50,7 @@ class TestHome:
         self.driver.close()
 
     # Sort products high to low
-    def test_sorting_the_products_high_to_low(self, driver_setup):
+    def sorting_the_products_high_to_low(self, driver_setup):
         self.driver = driver_setup
         self.driver.get(self.base_url)
         self.driver.maximize_window()

@@ -50,3 +50,9 @@ class BasePage:
             sorted_names = sorted_names[::-1]
 
         return names == sorted_names
+
+    def get_element_text(self, xpath):
+        element = WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH, xpath))
+        )
+        return element.text
