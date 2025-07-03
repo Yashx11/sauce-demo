@@ -2,9 +2,12 @@ from pages.BasePage import BasePage
 
 class HomePage(BasePage):
     side_bar_xpath = "//button[text()='Open Menu']"
+    all_items_sidebar_menu_xpath = "//a[@data-test='inventory-sidebar-link']"
     logout_xpath = "//a[text()='Logout']"
+    home_page_confirmation_xpath = "//span[text()='Products']"
     products_name_card_xpath = "//div[@class='inventory_item_description']/div[1]/a/div"
     products_price_card_xpath = "//div[@class='inventory_item_description']/div[2]/div"
+    products_add_to_cart_button_xpath = "//div[@class='inventory_item_description']/div[2]/button"
     first_product_card_button_xpath = "(//div[@class='inventory_item_description'])[1]/div[2]/button"
     sorting_dropdown_xpath = "//select[@class='product_sort_container']"
     sorting_option_a_to_z_xpath = "//option[@value='az']"
@@ -39,3 +42,15 @@ class HomePage(BasePage):
             assert base_page.verify_price_sorting(self.products_price_card_xpath, "desc")
         else:
             raise ValueError("Type not found")
+
+    def add_multiple_products_in_cart(self):
+        product_count = 0
+        base_page = BasePage(self.driver)
+        available_products = base_page.get_multiple_elements(self.products_add_to_cart_button_xpath)
+        for i in available_products:
+            i.click()
+            product_count = len(available_products)
+        base_page.click_on_element(self.cart_page_xpath)
+        cart_badge_count = base_page.get_element_text("//span[@data-test='shopping-cart-badge']")
+
+        assert int(product_count) == int(cart_badge_count)

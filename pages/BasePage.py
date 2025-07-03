@@ -56,3 +56,17 @@ class BasePage:
             EC.visibility_of_element_located((By.XPATH, xpath))
         )
         return element.text
+
+    def get_element(self, xpath):
+        element = WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH, xpath))
+        )
+        return element
+
+    def get_element_count(self, xpath):
+        elements = WebDriverWait(self.driver, 10).until(EC.visibility_of_all_elements_located((By.XPATH, xpath)))
+        return len(elements)
+
+    def get_multiple_elements(self, xpath):
+        elements = WebDriverWait(self.driver, 10).until(EC.visibility_of_all_elements_located((By.XPATH, xpath)))
+        return elements

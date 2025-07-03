@@ -1,4 +1,7 @@
+import time
+
 from pages.CartPage import CartPage
+from pages.CheckoutPage import CheckoutPage
 from pages.LoginPage import LoginPage
 from pages.HomePage import HomePage
 from pages.BasePage import BasePage
@@ -39,7 +42,7 @@ class TestCart:
         assert product_name == "Sauce Labs Backpack"
         self.driver.close()
 
-    def test_remove_product_from_cart(self, driver_setup):
+    def remove_product_from_cart(self, driver_setup):
         self.driver = driver_setup
         self.driver.get(self.base_url)
         self.driver.maximize_window()
@@ -50,8 +53,45 @@ class TestCart:
         base_page = BasePage(self.driver)
         base_page.click_on_element(HomePage.cart_page_xpath)
         base_page.click_on_element(CartPage.remove_product_button_xpath)
+        base_page.click_on_element(HomePage.side_bar_xpath)
+        base_page.click_on_element(HomePage.all_items_sidebar_menu_xpath)
         self.driver.close()
 
-    
+    def click_checkout(self, driver_setup):
+        self.driver = driver_setup
+        self.driver.get(self.base_url)
+        self.driver.maximize_window()
+        login_page = LoginPage(self.driver)
+        login_page.login(self.username, self.password)
+        home_page = HomePage(self.driver)
+        home_page.add_product_to_cart()
+        base_page = BasePage(self.driver)
+        base_page.click_on_element(CartPage.checkout_button_xpath)
+        element = base_page.get_element(CheckoutPage.check_out_confirmation_title_xpath)
+        assert element.is_displayed()
+        self.driver.close()
 
+    def back_to_inventory(self, driver_setup):
+        self.driver = driver_setup
+        self.driver.get(self.base_url)
+        self.driver.maximize_window()
+        login_page = LoginPage(self.driver)
+        login_page.login(self.username, self.password)
+        home_page = HomePage(self.driver)
+        home_page.add_product_to_cart()
+        base_page = BasePage(self.driver)
+        base_page.click_on_element(CheckoutPage.continue_shopping_button_xpath)
+        assert base_page.get_element(HomePage.home_page_confirmation_xpath).is_displayed()
+        self.driver.close()
 
+    def test_tmp(self, driver_setup):
+        self.driver = driver_setup
+        self.driver.get(self.base_url)
+        self.driver.maximize_window()
+        login_page = LoginPage(self.driver)
+        login_page.login(self.username, self.password)
+        home_page = HomePage(self.driver)
+        home_page.add_multiple_products_in_cart()
+        print("test")
+        time.sleep(10)
+        self.driver.close()

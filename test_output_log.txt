@@ -1,0 +1,2 @@
+Product count: 6
+Cart badge shows: 6
