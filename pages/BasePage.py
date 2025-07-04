@@ -70,3 +70,16 @@ class BasePage:
     def get_multiple_elements(self, xpath):
         elements = WebDriverWait(self.driver, 10).until(EC.visibility_of_all_elements_located((By.XPATH, xpath)))
         return elements
+
+    def trim_left(self, value: str, chars: str = None) -> str:
+        return value.lstrip(chars)
+
+    def get_final_order_value(self, xpath):
+        product_price_with_dollar = []
+        final_price = 0
+        products = WebDriverWait(self.driver, 10).until(EC.visibility_of_all_elements_located((By.XPATH, xpath)))
+        for product in products:
+            product_price_with_dollar.append(self.trim_left(product.text, "$"))
+        for product_price in product_price_with_dollar:
+            final_price += float(product_price)
+        return final_price

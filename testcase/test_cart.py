@@ -1,5 +1,4 @@
 import time
-
 from pages.CartPage import CartPage
 from pages.CheckoutPage import CheckoutPage
 from pages.LoginPage import LoginPage
@@ -84,7 +83,7 @@ class TestCart:
         assert base_page.get_element(HomePage.home_page_confirmation_xpath).is_displayed()
         self.driver.close()
 
-    def test_tmp(self, driver_setup):
+    def tmp(self, driver_setup):
         self.driver = driver_setup
         self.driver.get(self.base_url)
         self.driver.maximize_window()
