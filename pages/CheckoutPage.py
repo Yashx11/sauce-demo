@@ -20,6 +20,10 @@ class CheckoutPage(BasePage):
     last_name_blank_error_message_xpath = "//h3[text()='Error: Last Name is required']"
     zip_code_blank_error_message_xpath = "//h3[text()='Error: Postal Code is required']"
     item_total_xpath = "//div[@class='summary_subtotal_label']"
+    product_tax_xpath = "//div[@data-test='tax-label']"
+    checkout_successful_text_xpath = "//div[@data-test='complete-text']"
+    back_to_products_xpath = "//button[@data-test='back-to-products']"
+    finish_checkout_button_xpath = "//button[@data-test='finish']"
 
 
     def add_product_to_cart_and_fill_checkout_details(self, first_name, last_name, zip_code):

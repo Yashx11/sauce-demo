@@ -10,7 +10,7 @@ class TestLogin:
     password = read_configurations("Basic Info", "password")
 
     #Login with valid credentials
-    def login(self, driver_setup):
+    def test_login(self, driver_setup):
         self.driver = driver_setup
         self.driver.get(self.base_url)
         self.driver.maximize_window()
@@ -21,7 +21,7 @@ class TestLogin:
         self.driver.close()
 
     #Login with locked out user
-    def login_with_locker_user(self, driver_setup):
+    def test_login_with_locker_user(self, driver_setup):
         self.driver = driver_setup
         self.driver.get(self.base_url)
         self.driver.maximize_window()
@@ -32,7 +32,7 @@ class TestLogin:
         self.driver.close()
 
     #Login with invalid username
-    def login_with_invalid_user(self, driver_setup):
+    def test_login_with_invalid_user(self, driver_setup):
         self.driver = driver_setup
         self.driver.get(self.base_url)
         self.driver.maximize_window()
@@ -43,7 +43,7 @@ class TestLogin:
         self.driver.close()
 
     #Login with empty fields
-    def login_with_empty_fields(self, driver_setup):
+    def test_login_with_empty_fields(self, driver_setup):
         self.driver = driver_setup
         self.driver.get(self.base_url)
         self.driver.maximize_window()
@@ -54,7 +54,7 @@ class TestLogin:
         self.driver.close()
 
     #Login with only username
-    def login_with_username_only(self, driver_setup):
+    def test_login_with_username_only(self, driver_setup):
         self.driver = driver_setup
         self.driver.get(self.base_url)
         self.driver.maximize_window()
@@ -65,7 +65,7 @@ class TestLogin:
         self.driver.close()
 
     #Password field masked
-    def password_should_masked(self, driver_setup):
+    def test_password_should_masked(self, driver_setup):
         self.driver = driver_setup
         self.driver.get(self.base_url)
         self.driver.maximize_window()
@@ -74,7 +74,7 @@ class TestLogin:
         self.driver.close()
 
     #Login & Logout
-    def login_and_logout(self, driver_setup):
+    def test_login_and_logout(self, driver_setup):
         self.driver = driver_setup
         self.driver.get(self.base_url)
         self.driver.maximize_window()

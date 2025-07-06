@@ -12,7 +12,7 @@ class TestCart:
     username = read_configurations("Basic Info", "username")
     password = read_configurations("Basic Info", "password")
 
-    def navigate_to_cart_page(self, driver_setup):
+    def test_navigate_to_cart_page(self, driver_setup):
         self.driver = driver_setup
         self.driver.get(self.base_url)
         self.driver.maximize_window()
@@ -25,7 +25,7 @@ class TestCart:
         base_page.verify_task("//span[text()='Your Cart']")
         self.driver.close()
 
-    def verify_product_details_in_cart(self, driver_setup):
+    def test_verify_product_details_in_cart(self, driver_setup):
         self.driver = driver_setup
         self.driver.get(self.base_url)
         self.driver.maximize_window()
@@ -41,7 +41,7 @@ class TestCart:
         assert product_name == "Sauce Labs Backpack"
         self.driver.close()
 
-    def remove_product_from_cart(self, driver_setup):
+    def test_remove_product_from_cart(self, driver_setup):
         self.driver = driver_setup
         self.driver.get(self.base_url)
         self.driver.maximize_window()
@@ -56,7 +56,7 @@ class TestCart:
         base_page.click_on_element(HomePage.all_items_sidebar_menu_xpath)
         self.driver.close()
 
-    def click_checkout(self, driver_setup):
+    def test_click_checkout(self, driver_setup):
         self.driver = driver_setup
         self.driver.get(self.base_url)
         self.driver.maximize_window()
@@ -70,7 +70,7 @@ class TestCart:
         assert element.is_displayed()
         self.driver.close()
 
-    def back_to_inventory(self, driver_setup):
+    def test_back_to_inventory(self, driver_setup):
         self.driver = driver_setup
         self.driver.get(self.base_url)
         self.driver.maximize_window()
