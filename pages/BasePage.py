@@ -83,3 +83,6 @@ class BasePage:
         for product_price in product_price_with_dollar:
             final_price += float(product_price)
         return final_price
+
+    def scroll_page(self):
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")

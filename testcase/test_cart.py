@@ -12,7 +12,7 @@ class TestCart:
     username = read_configurations("Basic Info", "username")
     password = read_configurations("Basic Info", "password")
 
-    def test_navigate_to_cart_page(self, driver_setup):
+    def login_instance(self, driver_setup):
         self.driver = driver_setup
         self.driver.get(self.base_url)
         self.driver.maximize_window()
@@ -20,19 +20,16 @@ class TestCart:
         login_page.login(self.username, self.password)
         home_page = HomePage(self.driver)
         home_page.add_product_to_cart()
+
+    def navigate_to_cart_page(self, driver_setup):
+        self.login_instance(driver_setup)
         base_page = BasePage(self.driver)
         base_page.click_on_element(HomePage.cart_page_xpath)
         base_page.verify_task("//span[text()='Your Cart']")
         self.driver.close()
 
-    def test_verify_product_details_in_cart(self, driver_setup):
-        self.driver = driver_setup
-        self.driver.get(self.base_url)
-        self.driver.maximize_window()
-        login_page = LoginPage(self.driver)
-        login_page.login(self.username, self.password)
-        home_page = HomePage(self.driver)
-        home_page.add_product_to_cart()
+    def verify_product_details_in_cart(self, driver_setup):
+        self.login_instance(driver_setup)
         base_page = BasePage(self.driver)
         base_page.click_on_element(HomePage.cart_page_xpath)
         cart_page = CartPage(self.driver)
@@ -41,14 +38,8 @@ class TestCart:
         assert product_name == "Sauce Labs Backpack"
         self.driver.close()
 
-    def test_remove_product_from_cart(self, driver_setup):
-        self.driver = driver_setup
-        self.driver.get(self.base_url)
-        self.driver.maximize_window()
-        login_page = LoginPage(self.driver)
-        login_page.login(self.username, self.password)
-        home_page = HomePage(self.driver)
-        home_page.add_product_to_cart()
+    def remove_product_from_cart(self, driver_setup):
+        self.login_instance(driver_setup)
         base_page = BasePage(self.driver)
         base_page.click_on_element(HomePage.cart_page_xpath)
         base_page.click_on_element(CartPage.remove_product_button_xpath)
@@ -56,41 +47,17 @@ class TestCart:
         base_page.click_on_element(HomePage.all_items_sidebar_menu_xpath)
         self.driver.close()
 
-    def test_click_checkout(self, driver_setup):
-        self.driver = driver_setup
-        self.driver.get(self.base_url)
-        self.driver.maximize_window()
-        login_page = LoginPage(self.driver)
-        login_page.login(self.username, self.password)
-        home_page = HomePage(self.driver)
-        home_page.add_product_to_cart()
+    def click_checkout(self, driver_setup):
+        self.login_instance(driver_setup)
         base_page = BasePage(self.driver)
         base_page.click_on_element(CartPage.checkout_button_xpath)
         element = base_page.get_element(CheckoutPage.check_out_confirmation_title_xpath)
         assert element.is_displayed()
         self.driver.close()
 
-    def test_back_to_inventory(self, driver_setup):
-        self.driver = driver_setup
-        self.driver.get(self.base_url)
-        self.driver.maximize_window()
-        login_page = LoginPage(self.driver)
-        login_page.login(self.username, self.password)
-        home_page = HomePage(self.driver)
-        home_page.add_product_to_cart()
+    def back_to_inventory(self, driver_setup):
+        self.login_instance(driver_setup)
         base_page = BasePage(self.driver)
         base_page.click_on_element(CheckoutPage.continue_shopping_button_xpath)
         assert base_page.get_element(HomePage.home_page_confirmation_xpath).is_displayed()
-        self.driver.close()
-
-    def tmp(self, driver_setup):
-        self.driver = driver_setup
-        self.driver.get(self.base_url)
-        self.driver.maximize_window()
-        login_page = LoginPage(self.driver)
-        login_page.login(self.username, self.password)
-        home_page = HomePage(self.driver)
-        home_page.add_multiple_products_in_cart()
-        print("test")
-        time.sleep(10)
         self.driver.close()
