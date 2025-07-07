@@ -146,5 +146,7 @@ This project is licensed under the MIT License.
 ### 👨‍💻 Author
 
 **Yash Mali**  
-🔗 [LinkedIn](https://www.linkedin.com/in/Yashx11)  
-📧 yashx11@example.com (replace with your email if public)
+
+[//]: # (🔗 [LinkedIn]&#40;https://www.linkedin.com/in/Yashx11&#41;  )
+
+[//]: # (📧 yashx11@example.com &#40;replace with your email if public&#41;)
