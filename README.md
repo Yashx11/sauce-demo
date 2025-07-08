@@ -27,6 +27,8 @@ This is a Page Object Model (POM) based **Selenium automation framework** for UI
 
 ```
 sauce-demo/
+├── allure-results
+│   └── allure-reports
 ├── configurations/
 │   └── config.ini
 ├── logs/
@@ -35,15 +37,16 @@ sauce-demo/
 │   ├── BasePage.py
 │   ├── LoginPage.py
 │   ├── HomePage.py
-│   └── ...
+│   ├── CartPage.py
+│   └── CheckoutPage.py
 ├── testcase/
-│   ├── test_login.py
-│   ├── test_home.py
 │   ├── conftest.py
-│   └── ...
+│   ├── test_home.py
+│   ├── test_login.py
+│   ├── test_cart.py
+│   └── test_checkout.py
 ├── utilities/
 │   ├── readproperties.py
-│   ├── excel_reader.py
 │   └── ...
 ├── requirements.txt
 ├── pytest.ini
@@ -110,15 +113,6 @@ On any test failure, a screenshot is automatically captured and:
 - Screenshot, exception & stacktrace on failure
 - Filter by severity, suite, tags
 
----
-
-## 📂 Data-Driven Testing Support
-
-Supported via:
-- **Excel** (`openpyxl`)
-- **JSON** files
-
-Utility methods available in `utilities/`.
 
 ---
 
@@ -131,11 +125,6 @@ Utility methods available in `utilities/`.
 
 ---
 
-## 🤝 Contributing
-
-If you’d like to contribute or extend this, feel free to fork and raise a pull request.
-
----
 
 ## 📄 License
 

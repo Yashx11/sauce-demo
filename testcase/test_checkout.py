@@ -23,7 +23,7 @@ class TestCheckout:
         login_page.login(self.username, self.password)
         return login_page
 
-    def navigate_to_checkout_step_one(self, driver_setup):
+    def test_navigate_to_checkout_step_one(self, driver_setup):
         self.login_instance(driver_setup)
         cart_page = CartPage(driver_setup)
         cart_page.proceed_to_checkout_setp_one_page()
@@ -31,7 +31,7 @@ class TestCheckout:
         base_page.verify_task(CheckoutPage.check_out_confirmation_title_xpath)
         self.driver.close()
 
-    def submit_checkout_with_valid_info(self, driver_setup):
+    def test_submit_checkout_with_valid_info(self, driver_setup):
         self.login_instance(driver_setup)
         base_page = BasePage(driver_setup)
         checkout_page = CheckoutPage(driver_setup)
@@ -40,7 +40,7 @@ class TestCheckout:
         base_page.verify_task(checkout_page.check_out_page_step2_verification_xpath)
         self.driver.close()
 
-    def submit_checkout_without_first_name(self, driver_setup):
+    def test_submit_checkout_without_first_name(self, driver_setup):
         self.login_instance(driver_setup)
         base_page = BasePage(driver_setup)
         checkout_page = CheckoutPage(driver_setup)
@@ -49,7 +49,7 @@ class TestCheckout:
         base_page.verify_task(checkout_page.first_name_blank_error_message_xpath)
         self.driver.close()
 
-    def submit_checkout_without_last_name(self, driver_setup):
+    def test_submit_checkout_without_last_name(self, driver_setup):
         self.login_instance(driver_setup)
         base_page = BasePage(driver_setup)
         checkout_page = CheckoutPage(driver_setup)
@@ -58,7 +58,7 @@ class TestCheckout:
         base_page.verify_task(checkout_page.last_name_blank_error_message_xpath)
         self.driver.close()
 
-    def submit_checkout_without_zip_code(self, driver_setup):
+    def test_submit_checkout_without_zip_code(self, driver_setup):
         self.login_instance(driver_setup)
         base_page = BasePage(driver_setup)
         checkout_page = CheckoutPage(driver_setup)
@@ -67,7 +67,7 @@ class TestCheckout:
         base_page.verify_task(checkout_page.zip_code_blank_error_message_xpath)
         self.driver.close()
 
-    def cancel_checkout(self, driver_setup):
+    def test_cancel_checkout(self, driver_setup):
         self.login_instance(driver_setup)
         base_page = BasePage(driver_setup)
         checkout_page = CheckoutPage(driver_setup)
@@ -76,7 +76,7 @@ class TestCheckout:
         base_page.verify_task(CartPage.cart_page_verification_xpath)
         self.driver.close()
 
-    def checkout(self, driver_setup):
+    def test_checkout(self, driver_setup):
         self.login_instance(driver_setup)
         base_page = BasePage(driver_setup)
         home_page = HomePage(driver_setup)

@@ -21,14 +21,14 @@ class TestCart:
         home_page = HomePage(self.driver)
         home_page.add_product_to_cart()
 
-    def navigate_to_cart_page(self, driver_setup):
+    def test_navigate_to_cart_page(self, driver_setup):
         self.login_instance(driver_setup)
         base_page = BasePage(self.driver)
         base_page.click_on_element(HomePage.cart_page_xpath)
         base_page.verify_task("//span[text()='Your Cart']")
         self.driver.close()
 
-    def verify_product_details_in_cart(self, driver_setup):
+    def test_verify_product_details_in_cart(self, driver_setup):
         self.login_instance(driver_setup)
         base_page = BasePage(self.driver)
         base_page.click_on_element(HomePage.cart_page_xpath)
@@ -38,7 +38,7 @@ class TestCart:
         assert product_name == "Sauce Labs Backpack"
         self.driver.close()
 
-    def remove_product_from_cart(self, driver_setup):
+    def test_remove_product_from_cart(self, driver_setup):
         self.login_instance(driver_setup)
         base_page = BasePage(self.driver)
         base_page.click_on_element(HomePage.cart_page_xpath)
@@ -47,7 +47,7 @@ class TestCart:
         base_page.click_on_element(HomePage.all_items_sidebar_menu_xpath)
         self.driver.close()
 
-    def click_checkout(self, driver_setup):
+    def test_click_checkout(self, driver_setup):
         self.login_instance(driver_setup)
         base_page = BasePage(self.driver)
         base_page.click_on_element(CartPage.checkout_button_xpath)
@@ -55,7 +55,7 @@ class TestCart:
         assert element.is_displayed()
         self.driver.close()
 
-    def back_to_inventory(self, driver_setup):
+    def test_back_to_inventory(self, driver_setup):
         self.login_instance(driver_setup)
         base_page = BasePage(self.driver)
         base_page.click_on_element(CheckoutPage.continue_shopping_button_xpath)

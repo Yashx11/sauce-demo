@@ -17,12 +17,8 @@ class TestHome:
         login_page.login(self.username, self.password)
         return login_page
 
-    # Verify product list is displayed
-    def is_all_products_are_displayed(self, driver_setup):
-        pass
-
     # Sort products A to Z
-    def sorting_the_products_a_to_z(self, driver_setup):
+    def test_sorting_the_products_a_to_z(self, driver_setup):
         self.login_instance(driver_setup)
         home_page = HomePage(self.driver)
         home_page.sort("a_to_z")
@@ -30,7 +26,7 @@ class TestHome:
         self.driver.close()
 
     # Sort products Z to A
-    def sorting_the_products_z_to_a(self, driver_setup):
+    def test_sorting_the_products_z_to_a(self, driver_setup):
         self.login_instance(driver_setup)
         home_page = HomePage(self.driver)
         home_page.sort("z_to_a")
@@ -38,7 +34,7 @@ class TestHome:
         self.driver.close()
 
     # Sort products low to high
-    def sorting_the_products_low_to_height(self, driver_setup):
+    def test_sorting_the_products_low_to_height(self, driver_setup):
         self.login_instance(driver_setup)
         home_page = HomePage(self.driver)
         home_page.sort("low_to_high")
@@ -46,7 +42,7 @@ class TestHome:
         self.driver.close()
 
     # Sort products high to low
-    def sorting_the_products_high_to_low(self, driver_setup):
+    def test_sorting_the_products_high_to_low(self, driver_setup):
         self.login_instance(driver_setup)
         home_page = HomePage(self.driver)
         home_page.sort("high_to_low")
@@ -54,14 +50,14 @@ class TestHome:
         self.driver.close()
 
     # Add product to cart
-    def add_product_to_cart(self, driver_setup):
+    def test_add_product_to_cart(self, driver_setup):
         self.login_instance(driver_setup)
         home_page = HomePage(self.driver)
         home_page.add_product_to_cart()
         self.driver.close()
 
     # Remove product from cart
-    def remove_product_from_cart(self, driver_setup):
+    def test_remove_product_from_cart(self, driver_setup):
         self.login_instance(driver_setup)
         home_page = HomePage(self.driver)
         home_page.remove_product_from_card()
